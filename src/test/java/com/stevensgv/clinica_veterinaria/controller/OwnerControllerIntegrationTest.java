@@ -32,7 +32,7 @@ public class OwnerControllerIntegrationTest {
 
     @Test
     public void getOwnerByIdTest() throws Exception {
-        Owner owner = new Owner(null, "123456", "Steven", "Antonio", "31356");
+        Owner owner = new Owner(null, "12345679", "Steven", "Antonio", "31356");
         ownerRepository.save(owner);
 
         mockMvc.perform(

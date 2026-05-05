@@ -42,10 +42,10 @@ public class PetControllerIntegrationTest {
 
     @Test
     public void savePetTest() throws Exception {
-        Owner owner = new Owner(null, "123456", "Steven", "Antonio", "31356");
+        Owner owner = new Owner(null, "12345678", "Steven", "Antonio", "31356");
         Owner savedOwner = ownerRepository.save(owner);
 
-        Pet pet = new Pet(null, "Lucas", "Perro", "Pincher", "Café", savedOwner);
+        Pet pet = new Pet(null, "Lucas", "Dog", "Pincher", "Café", savedOwner);
 
         MvcResult result = mockMvc.perform(
                 post(URL_CREATE)
@@ -60,7 +60,7 @@ public class PetControllerIntegrationTest {
 
         Pet petBD = petRepository.findAll().stream()
                 .filter(m -> "Lucas".equals(m.getName()))
-                .filter(m -> "Perro".equals(m.getSpecie()))
+                .filter(m -> "Dog".equals(m.getSpecie()))
                 .filter(m -> "Pincher".equals(m.getBreed()))
                 .filter(m -> "Café".equals(m.getColor()))
                 .findFirst()
@@ -68,7 +68,7 @@ public class PetControllerIntegrationTest {
 
         assertThat(petBD.getId()).isNotNull();
         assertThat(petBD.getName()).isEqualTo("Lucas");
-        assertThat(petBD.getSpecie()).isEqualTo("Perro");
+        assertThat(petBD.getSpecie()).isEqualTo("Dog");
         assertThat(petBD.getBreed()).isEqualTo("Pincher");
         assertThat(petBD.getColor()).isEqualTo("Café");
     }
